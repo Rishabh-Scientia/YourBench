@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-brand-green: #1A8A1A;
+  --color-brand-green-hover: #136a13;
+  --color-brand-black: #0A0A0A;
+  --color-brand-text: #1A1A1A;
+  --color-brand-dark-blue: #0B2F64;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Custom CSS helper for gradient backgrounds */
+.hero-gradient {
+  background: radial-gradient(circle at top right, rgba(26, 138, 26, 0.08), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(10, 10, 10, 0.05), transparent 45%);
+}
+
+.custom-solutions-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
