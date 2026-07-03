@@ -182,7 +182,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 className="text-lg text-neutral-600 max-w-xl leading-relaxed"
               >
-                YourBench is an indie software company crafting powerful desktop tools, AI-powered automation, and custom digital solutions — built specifically for the needs of Indian schools, educators, and growing businesses.
+                YourBench is an Indian software company crafting powerful desktop tools, AI-powered automation, and custom digital solutions — built specifically for the needs of Indian schools, educators, and growing businesses.
               </motion.p>
 
               <motion.div
