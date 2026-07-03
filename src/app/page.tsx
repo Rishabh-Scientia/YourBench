@@ -172,7 +172,7 @@ export default function Home() {
                   <span>Build Smarter. Grow Faster.</span>
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 leading-tight">
-                  We Build Software That Works for <span className="text-brand-green">India&apos;s</span> Schools &amp; Businesses
+                  We Build Software That Works for <span className="text-brand-green">India&apos;s</span>{" "}Schools &amp; Businesses
                 </h1>
               </motion.div>
 
