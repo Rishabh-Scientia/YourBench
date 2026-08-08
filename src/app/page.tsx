@@ -454,10 +454,13 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold border border-blue-100">
-                      ⚡ Full-Stack AI Product
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Available Now
                     </span>
-                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">Prepo.ai</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">
+                      Prepo<span className="text-blue-600">.ai</span>
+                    </h3>
                   </div>
                 </div>
 
@@ -484,7 +487,9 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
                 >
-                  Visit Prepo.ai Live <ExternalLink size={15} />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Visit Prepo.ai Live</span>
+                  <ExternalLink size={15} />
                 </a>
               </div>
             </motion.div>
