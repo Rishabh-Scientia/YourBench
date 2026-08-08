@@ -464,12 +464,12 @@ export default function Home() {
                 <div className="space-y-1.5">
                   <h4 className="text-sm sm:text-base font-semibold text-blue-600">AI-Powered Adaptive Quiz &amp; Assessment Platform</h4>
                   <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
-                    Dynamically generates custom multiple-choice quizzes tailored to any academic level or subject using LangGraph &amp; Groq (Llama 3.3 70B). Features instant 0ms scoring, 4-part AI explanations, and 1-click teacher shareable links with live leaderboards.
+                    Dynamically generates custom multiple-choice quizzes tailored to any academic level, subject, or chapter. Features instant scoring, detailed 4-part AI explanations, 1-click teacher shareable links, and live student response leaderboards.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['Custom AI Quizzes', 'LangGraph & Groq', '0ms Scoring', '4-Part AI Explanations', 'Teacher Share & Leaderboards', 'Supabase Auth'].map((tag) => (
+                  {['Custom AI Quizzes', 'Instant Scoring', '4-Part AI Explanations', '1-Click Teacher Share', 'Live Leaderboards', 'Attempt History'].map((tag) => (
                     <span key={tag} className="text-[10px] sm:text-xs bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-md font-medium border border-neutral-200/50">
                       {tag}
                     </span>
