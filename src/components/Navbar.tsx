@@ -14,15 +14,23 @@ export default function Navbar() {
   const isHome = pathname === '/';
 
   const navItems = [
+    { name: 'Home', href: '/', external: false },
     { name: 'Products', href: isHome ? '#products' : '/#products', external: false },
     { name: 'Custom Solutions', href: isHome ? '#solutions' : '/#solutions', external: false },
-    { name: 'About', href: isHome ? '#about' : '/#about', external: false },
     { name: 'Team', href: '/team', external: true },
     { name: 'Careers', href: '/careers', external: true },
     { name: 'Contact', href: isHome ? '#contact' : '/#contact', external: false },
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === '/') {
+      if (isHome) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsOpen(false);
+      }
+      return;
+    }
     if (href.startsWith('#') || href.includes('#')) {
       const targetId = href.split('#')[1];
       const element = document.getElementById(targetId);
