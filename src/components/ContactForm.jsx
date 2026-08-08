@@ -30,6 +30,12 @@ export default function ContactForm() {
     setError('');
     setSuccess(false);
 
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      setError('Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL & NEXT_PUBLIC_SUPABASE_ANON_KEY) are missing. Please add them in Vercel settings and redeploy.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error: insertError } = await supabase
         .from('inquiries')
@@ -58,7 +64,7 @@ export default function ContactForm() {
       });
     } catch (err) {
       console.error('Error submitting inquiry:', err);
-      setError(err.message || 'Failed to send message. Please try again.');
+      setError(err.message || 'Failed to send message. Please check Supabase table configuration.');
     } finally {
       setLoading(false);
     }
