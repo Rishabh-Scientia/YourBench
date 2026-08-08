@@ -7,6 +7,7 @@ import {
   Lock, 
   Sparkles, 
   ArrowRight, 
+  ExternalLink,
   Mail, 
   Phone, 
   MapPin, 
@@ -58,13 +59,13 @@ export default function Home() {
   const [logs, setLogs] = useState<string[]>([]);
 
   const terminalLines = [
-    "📡 Establishing link to yoursbench.in...",
-    "🤖 Init AI Prep Quiz Generator engine",
+    "📡 Establishing link to prepo.co.in & yoursbench.in...",
+    "🤖 Syncing Prepo.ai assessment engine (LangGraph + Groq)",
     "💾 Local DB loaded: %LOCALAPPDATA%/feemaster.db",
     "⚡ FeeMaster Cloud Node synced in 14ms",
     "📊 Compiled school collection payout: OK",
     "🟢 WhatsApp campaign server status: ONLINE",
-    "🧠 RAG query parsed: CBSE class 10 science",
+    "🧠 Prepo.ai adaptive quiz generated: Class 10 CBSE Science",
     "📈 Growth indicator shifted: +49.1%",
     "🚀 Vercel Edge Server response: 200 OK"
   ];
@@ -430,40 +431,46 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Card 2 — Prep with AI (Coming Soon) */}
+            {/* Card 2 — Prepo.ai (Live Platform) */}
             <motion.div
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl border border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
+              whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-white rounded-2xl border-l-4 border-blue-600 border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
             >
-              {/* Lock Badge Top Right */}
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-500 text-[10px] font-bold border border-neutral-200">
-                <Lock size={10} />
-                <span>In Development</span>
+              {/* Live Badge Top Right */}
+              <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold border border-emerald-200 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Live Platform</span>
               </div>
 
               <div className="space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-lg bg-indigo-50 border border-indigo-100 text-indigo-600">
-                    <Brain size={24} />
+                  <div className="w-12 h-12 relative rounded-xl bg-white p-1 flex items-center justify-center border border-neutral-200 shadow-sm overflow-hidden flex-shrink-0">
+                    <SmartImage
+                      src="/logo-prepo.jpg"
+                      fallbackSrc="/logo-prepo-text.jpg"
+                      alt="Prepo.ai Logo"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                   <div>
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-bold">
-                      🔜 Coming Soon
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold border border-blue-100">
+                      ⚡ Full-Stack AI Product
                     </span>
-                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">Prep with AI</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">Prepo.ai</h3>
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <h4 className="text-md font-semibold text-neutral-800">Study Smarter with AI-Generated Quizzes</h4>
-                  <p className="text-neutral-500 text-sm leading-relaxed">
-                    AI-powered quiz and preparation tool — select class, subject, and chapter, get instant quizzes with auto-scoring, leaderboards, and performance analytics.
+                  <h4 className="text-sm sm:text-base font-semibold text-blue-600">AI-Powered Adaptive Quiz &amp; Assessment Platform</h4>
+                  <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                    Dynamically generates custom multiple-choice quizzes tailored to any academic level or subject using LangGraph &amp; Groq (Llama 3.3 70B). Features instant 0ms scoring, 4-part AI explanations, and 1-click teacher shareable links with live leaderboards.
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5">
-                  {['AI Quiz Generation', 'Class & Subject Filters', 'Score Tracking', 'Leaderboard'].map((tag) => (
-                    <span key={tag} className="text-[10px] bg-neutral-100 text-neutral-600 px-2 py-1 rounded border border-neutral-200/50">
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Custom AI Quizzes', 'LangGraph & Groq', '0ms Scoring', '4-Part AI Explanations', 'Teacher Share & Leaderboards', 'Supabase Auth'].map((tag) => (
+                    <span key={tag} className="text-[10px] sm:text-xs bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-md font-medium border border-neutral-200/50">
                       {tag}
                     </span>
                   ))}
@@ -471,14 +478,14 @@ export default function Home() {
               </div>
 
               <div className="pt-6">
-                <button
-                  type="button"
-                  disabled
-                  suppressHydrationWarning
-                  className="w-full text-center px-4 py-3 rounded-lg bg-neutral-100 text-neutral-400 font-semibold border border-neutral-200 pointer-events-none cursor-not-allowed text-sm"
+                <a
+                  href="https://www.prepo.co.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
                 >
-                  Coming Soon
-                </button>
+                  Visit Prepo.ai Live <ExternalLink size={15} />
+                </a>
               </div>
             </motion.div>
 
@@ -804,6 +811,7 @@ export default function Home() {
                       className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm bg-white transition-all"
                     >
                       <option value="FeeMaster">FeeMaster (School Fees Software)</option>
+                      <option value="Prepo.ai">Prepo.ai (AI Assessment Platform)</option>
                       <option value="Custom Software">Custom Software Solutions</option>
                       <option value="Partnership">Partnership</option>
                       <option value="General Inquiry">General Inquiry</option>

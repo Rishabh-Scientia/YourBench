@@ -84,6 +84,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <a href="https://www.prepo.co.in/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
+                  Prepo.ai Platform <span className="text-[10px] text-blue-400">↗</span>
+                </a>
+              </li>
+              <li>
                 <Link href="/products/feemaster#docs" className="hover:text-white transition-colors">
                   FeeMaster Docs
                 </Link>

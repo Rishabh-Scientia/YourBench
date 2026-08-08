@@ -55,7 +55,7 @@ export default function CareersPage() {
       type: 'Full-time',
       location: 'Remote (India)',
       salary: 'Competitive (Undisclosed)',
-      description: 'We are expanding our AI offerings (like Prep with AI). You will be in charge of developing automated quiz generators, scoring algorithms, RAG pipelines for educational content, and business workflows using LLMs.',
+      description: 'We are expanding our AI offerings (such as Prepo.ai). You will be in charge of developing automated quiz generators, scoring algorithms, RAG pipelines for educational content, and business workflows using LLMs.',
       skills: ['Python', 'LangChain / LangGraph', 'OpenAI / Gemini APIs', 'Vector Databases (Chroma/PGVector)', 'RAG Pipelines', 'Prompt Engineering'],
       responsibilities: [
         'Develop AI models and prompt strategies for educational prep and WhatsApp automation workflows.',
