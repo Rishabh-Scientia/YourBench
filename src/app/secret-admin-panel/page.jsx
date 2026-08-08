@@ -446,7 +446,8 @@ export default function AdminPanelPage() {
                                 {isExpanded ? (
                                   <><span>Show less</span> <ChevronUp className="w-3 h-3" /></>
                                 ) : (
-                                  <><span>Show more</span> <ChevronDown className="w-3 h-3" /></>}
+                                  <><span>Show more</span> <ChevronDown className="w-3 h-3" /></>
+                                )}
                               </button>
                             )}
                           </div>
