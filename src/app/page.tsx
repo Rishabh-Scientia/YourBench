@@ -529,15 +529,23 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-6">
+              <div className="pt-6 flex flex-wrap sm:flex-nowrap items-center gap-3">
+                <Link
+                  href="/products/prepo"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight size={16} />
+                </Link>
+
                 <a
                   href="https://www.prepo.co.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border-2 border-blue-600 hover:bg-blue-50 text-blue-600 font-bold transition-all duration-200 text-sm cursor-pointer"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Visit Prepo.ai Live</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Live</span>
                   <ExternalLink size={15} />
                 </a>
               </div>
