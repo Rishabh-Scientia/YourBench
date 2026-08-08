@@ -117,19 +117,19 @@ export default function CareersPage() {
 
         if (!error && data && data.length > 0) {
           const mappedJobs: Job[] = data.map((item) => ({
-            id: item.id,
-            title: item.title,
-            type: item.type,
-            location: item.location,
-            salary: item.salary,
-            description: item.description,
-            skills: Array.isArray(item.skills) ? item.skills : (item.skills ? item.skills.split(',') : []),
-            responsibilities: Array.isArray(item.responsibilities) ? item.responsibilities : (item.responsibilities ? item.responsibilities.split('\n') : [])
+            id: String(item.id || Math.random()),
+            title: item.title || 'Untitled Role',
+            type: item.type || 'Full-time',
+            location: item.location || 'Remote',
+            salary: item.salary || 'Undisclosed',
+            description: item.description || '',
+            skills: Array.isArray(item.skills) ? item.skills : (item.skills ? String(item.skills).split(',') : []),
+            responsibilities: Array.isArray(item.responsibilities) ? item.responsibilities : (item.responsibilities ? String(item.responsibilities).split('\n') : [])
           }));
           setJobs(mappedJobs);
         }
       } catch (e) {
-        // Fallback to DEFAULT_JOBS if table does not exist yet
+        // Fallback to DEFAULT_JOBS
       }
     }
     loadJobs();
@@ -162,11 +162,11 @@ export default function CareersPage() {
     setSubmitSuccess(false);
 
     try {
-      // 1. Upload Resume PDF to Supabase Storage bucket 'resumes'
-      const fileExt = resumeFile.name.split('.').pop();
+      // Sanitize file path
       const sanitizedFileName = `${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
       const filePath = `applications/${sanitizedFileName}`;
 
+      // Upload Resume PDF to Supabase Storage bucket 'resumes'
       const { data: storageData, error: storageError } = await supabase
         .storage
         .from('resumes')
@@ -175,17 +175,11 @@ export default function CareersPage() {
           upsert: true
         });
 
-      let resumePublicUrl = '';
-      if (storageError) {
-        console.warn('Storage bucket upload warning:', storageError.message);
-        // Fallback to storing filename string if bucket RLS policy restricts direct upload
-        resumePublicUrl = `Uploaded file: ${resumeFile.name}`;
-      } else {
-        const { data: urlData } = supabase.storage.from('resumes').getPublicUrl(filePath);
-        resumePublicUrl = urlData.publicUrl;
-      }
+      // Get public URL from Supabase storage
+      const { data: urlData } = supabase.storage.from('resumes').getPublicUrl(filePath);
+      const resumePublicUrl = urlData?.publicUrl || `https://supabase.co/storage/v1/object/public/resumes/${filePath}`;
 
-      // 2. Insert application row into Supabase table 'job_applications'
+      // Insert application row into Supabase table 'job_applications'
       const { error: dbError } = await supabase
         .from('job_applications')
         .insert([

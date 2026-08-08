@@ -24,7 +24,8 @@ import {
   PlusCircle,
   Briefcase,
   Layers,
-  CheckCircle2
+  CheckCircle2,
+  X
 } from 'lucide-react';
 
 export default function AdminPanelPage() {
@@ -216,12 +217,12 @@ export default function AdminPanelPage() {
     setJobPostLoading(true);
 
     try {
-      const skillsArray = newJob.skills
+      const skillsArray = (newJob.skills || '')
         .split(',')
         .map(s => s.trim())
         .filter(Boolean);
 
-      const respArray = newJob.responsibilities
+      const respArray = (newJob.responsibilities || '')
         .split('\n')
         .map(r => r.trim())
         .filter(Boolean);
@@ -266,6 +267,21 @@ export default function AdminPanelPage() {
       ...prev,
       [id]: !prev[id]
     }));
+  };
+
+  // Helper to generate working PDF resume URL
+  const getResumeHref = (rawUrl) => {
+    if (!rawUrl) return null;
+    if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+      return rawUrl;
+    }
+    // Clean string if formatted as "Uploaded file: filename.pdf"
+    const cleanFileName = rawUrl.replace(/^Uploaded file:\s*/i, '').trim();
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+    if (supabaseUrl && cleanFileName) {
+      return `${supabaseUrl}/storage/v1/object/public/resumes/applications/${cleanFileName}`;
+    }
+    return null;
   };
 
   // Filtered Inquiries
@@ -665,46 +681,49 @@ export default function AdminPanelPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {filteredApplications.map((app) => (
-                        <tr key={app.id || Math.random()} className="odd:bg-white even:bg-gray-50/50 hover:bg-green-50/20">
-                          <td className="py-4 px-6 font-bold text-gray-900 whitespace-nowrap">{app.name}</td>
-                          <td className="py-4 px-6 font-mono text-xs text-gray-700">{app.email}</td>
-                          <td className="py-4 px-6 font-mono text-xs text-gray-600">{app.phone}</td>
-                          <td className="py-4 px-6 whitespace-nowrap">
-                            <span className="px-2.5 py-1 rounded bg-green-50 text-green-800 font-bold text-xs border border-green-200">
-                              {app.role_applied}
-                            </span>
-                          </td>
-                          <td className="py-4 px-6 whitespace-nowrap">
-                            {app.resume_url?.startsWith('http') ? (
-                              <a
-                                href={app.resume_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold text-xs transition-colors shadow-sm"
+                      {filteredApplications.map((app) => {
+                        const href = getResumeHref(app.resume_url);
+                        return (
+                          <tr key={app.id || Math.random()} className="odd:bg-white even:bg-gray-50/50 hover:bg-green-50/20">
+                            <td className="py-4 px-6 font-bold text-gray-900 whitespace-nowrap">{app.name || 'Anonymous'}</td>
+                            <td className="py-4 px-6 font-mono text-xs text-gray-700">{app.email}</td>
+                            <td className="py-4 px-6 font-mono text-xs text-gray-600">{app.phone}</td>
+                            <td className="py-4 px-6 whitespace-nowrap">
+                              <span className="px-2.5 py-1 rounded bg-green-50 text-green-800 font-bold text-xs border border-green-200">
+                                {app.role_applied}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6 whitespace-nowrap">
+                              {href ? (
+                                <a
+                                  href={href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold text-xs transition-colors shadow-sm cursor-pointer"
+                                >
+                                  <FileText size={13} />
+                                  <span>View PDF Resume</span>
+                                  <ExternalLink size={12} />
+                                </a>
+                              ) : (
+                                <span className="text-gray-500 italic text-xs">{app.resume_url || 'No File'}</span>
+                              )}
+                            </td>
+                            <td className="py-4 px-6 text-xs text-gray-500 font-mono whitespace-nowrap">
+                              {formatDate(app.created_at)}
+                            </td>
+                            <td className="py-4 px-6 text-right whitespace-nowrap">
+                              <button
+                                onClick={() => handleDeleteApplication(app.id)}
+                                className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                                title="Delete Application"
                               >
-                                <FileText size={13} />
-                                <span>View PDF Resume</span>
-                                <ExternalLink size={12} />
-                              </a>
-                            ) : (
-                              <span className="text-gray-500 italic text-xs">{app.resume_url || 'No URL'}</span>
-                            )}
-                          </td>
-                          <td className="py-4 px-6 text-xs text-gray-500 font-mono whitespace-nowrap">
-                            {formatDate(app.created_at)}
-                          </td>
-                          <td className="py-4 px-6 text-right whitespace-nowrap">
-                            <button
-                              onClick={() => handleDeleteApplication(app.id)}
-                              className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                              title="Delete Application"
-                            >
-                              <Trash2 size={15} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                                <Trash2 size={15} />
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -725,6 +744,7 @@ export default function AdminPanelPage() {
               </div>
 
               <button
+                type="button"
                 onClick={() => setShowAddJobModal(true)}
                 className="inline-flex items-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg text-xs transition-all shadow-md cursor-pointer"
               >
@@ -740,7 +760,7 @@ export default function AdminPanelPage() {
                   <Briefcase className="w-8 h-8 text-gray-300 mx-auto" />
                   <h3 className="text-base font-bold text-gray-700">No custom job postings in database</h3>
                   <p className="text-xs text-gray-500 max-w-sm mx-auto">
-                    Default roles (Co-Founder, Full Stack Developer, AI Engineer, Regional Manager) are currently showing. Post a job to manage custom listings.
+                    Default roles (Co-Founder, Full Stack Developer, AI Engineer, Regional Manager) are currently showing. Click &quot;Post New Job Opening&quot; above to create a new job opening.
                   </p>
                 </div>
               ) : (
@@ -758,7 +778,7 @@ export default function AdminPanelPage() {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {jobs.map((job) => (
-                        <tr key={job.id} className="odd:bg-white even:bg-gray-50/50 hover:bg-green-50/20">
+                        <tr key={job.id || Math.random()} className="odd:bg-white even:bg-gray-50/50 hover:bg-green-50/20">
                           <td className="py-4 px-6 font-bold text-gray-900 whitespace-nowrap">{job.title}</td>
                           <td className="py-4 px-6 text-gray-700 whitespace-nowrap">{job.type}</td>
                           <td className="py-4 px-6 text-gray-600 whitespace-nowrap">{job.location}</td>
@@ -771,7 +791,7 @@ export default function AdminPanelPage() {
                           <td className="py-4 px-6 text-right whitespace-nowrap">
                             <button
                               onClick={() => handleDeleteJob(job.id)}
-                              className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                              className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                               title="Delete Job Opening"
                             >
                               <Trash2 size={15} />
@@ -797,7 +817,11 @@ export default function AdminPanelPage() {
             
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <h3 className="text-xl font-bold text-gray-900">Post New Job Opening</h3>
-              <button onClick={() => setShowAddJobModal(false)} className="text-gray-400 hover:text-gray-600">
+              <button 
+                type="button" 
+                onClick={() => setShowAddJobModal(false)} 
+                className="text-gray-400 hover:text-gray-600 cursor-pointer"
+              >
                 <X size={20} />
               </button>
             </div>
@@ -896,14 +920,14 @@ export default function AdminPanelPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddJobModal(false)}
-                  className="px-4 py-2 rounded-lg border border-gray-300 text-xs font-semibold hover:bg-gray-50"
+                  className="px-4 py-2 rounded-lg border border-gray-300 text-xs font-semibold hover:bg-gray-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={jobPostLoading}
-                  className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-lg transition-all shadow-md disabled:opacity-50"
+                  className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-lg transition-all shadow-md cursor-pointer disabled:opacity-50"
                 >
                   {jobPostLoading ? 'Posting...' : 'Publish Job Opening'}
                 </button>
