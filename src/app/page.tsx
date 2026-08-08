@@ -18,8 +18,14 @@ import {
   MessageSquare,
   ArrowRightLeft,
   ChevronRight,
+  ChevronLeft,
   User,
-  GraduationCap
+  GraduationCap,
+  Search,
+  Code2,
+  Rocket,
+  Check,
+  Clock
 } from 'lucide-react';
 import SmartImage from '@/components/SmartImage';
 
@@ -45,6 +51,7 @@ const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function Home() {
+  const [activeStep, setActiveStep] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
@@ -53,6 +60,48 @@ export default function Home() {
     interest: 'FeeMaster',
     message: ''
   });
+
+  const workSteps = [
+    {
+      id: "01",
+      title: "Understand & Scope",
+      icon: Search,
+      tagline: "Discovery & Blueprint Phase",
+      description: "We listen first. We analyze your institution or business workflow, identify operational bottlenecks, outline offline/online requirements, and craft a clear engineering specification.",
+      duration: "Days 1 – 3",
+      deliverables: [
+        "Workflow & Operational Needs Analysis",
+        "Technical Architecture & Security Blueprint",
+        "Transparent Fixed Pricing & Milestone Timeline"
+      ]
+    },
+    {
+      id: "02",
+      title: "Iterative Build & Demo",
+      icon: Code2,
+      tagline: "Agile Development Sprints",
+      description: "We design and develop clean code with robust database architecture. You receive regular interactive milestone demos to ensure your continuous feedback is baked directly into the software.",
+      duration: "Weeks 1 – 3",
+      deliverables: [
+        "Custom Desktop / Web Application Core Build",
+        "Weekly Interactive Progress & Feedback Demos",
+        "Rigorous Automated Testing & Security Audit"
+      ]
+    },
+    {
+      id: "03",
+      title: "Deploy & Support",
+      icon: Rocket,
+      tagline: "Production Launch & Support",
+      description: "We deploy the production-ready software (local desktop installation or cloud web app), handle initial data migration, train your administration team, and provide continuous technical maintenance.",
+      duration: "Continuous Handoff",
+      deliverables: [
+        "Production System Setup & Data Migration",
+        "Staff & Admin Training Sessions",
+        "Ongoing Technical Maintenance & Software Updates"
+      ]
+    }
+  ];
 
   const [dashoffset, setDashoffset] = useState(500);
   const [growthVal, setGrowthVal] = useState(0);
@@ -620,58 +669,177 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6 — HOW WE WORK */}
-      <section id="about" className="py-20 md:py-28 bg-white">
+      {/* SECTION 6 — HOW WE WORK (Interactive Engineering Pipeline) */}
+      <section id="about" className="py-20 md:py-28 bg-[#F8F9FA] border-y border-neutral-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900">How We Work</h2>
-            <p className="text-neutral-600 max-w-lg mx-auto">
-              Our simple 3-step pipeline to take your idea from concept to launch.
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-green/10 text-brand-green text-xs font-semibold uppercase tracking-wider">
+              <Sparkles size={13} className="animate-pulse" />
+              <span>Our Process</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              How We Work
+            </h2>
+            <p className="text-neutral-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+              Explore our 3-phase engineering pipeline. Click any step to inspect deliverables, timelines, and execution strategies.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative">
-            {/* Step 1 */}
-            <div className="flex flex-col items-center text-center p-6 space-y-4 relative group">
-              <div className="w-16 h-16 rounded-full bg-brand-green/10 border-2 border-brand-green/20 flex items-center justify-center text-brand-green font-extrabold text-xl shadow-lg">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900">Understand</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
-                We listen first, ask the right questions, and learn your workflow.
-              </p>
-              {/* Connector arrow (desktop only) */}
-              <div className="hidden md:block absolute top-14 -right-4 translate-x-1/2 text-neutral-300">
-                <ChevronRight size={24} />
-              </div>
-            </div>
+          {/* Interactive Step Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative mb-8">
+            
+            {/* Desktop Connecting Beam Line */}
+            <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-neutral-200 -translate-y-6 z-0" />
+            
+            {workSteps.map((stepItem, index) => {
+              const IconComp = stepItem.icon;
+              const isActive = activeStep === index;
+              return (
+                <motion.div
+                  key={stepItem.id}
+                  onClick={() => setActiveStep(index)}
+                  whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`relative z-10 p-6 sm:p-7 rounded-2xl cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                    isActive
+                      ? 'bg-white border-2 border-brand-green shadow-xl ring-4 ring-brand-green/10'
+                      : 'bg-white/90 border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md'
+                  }`}
+                >
+                  {/* Top Badge & Step Number */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className={`text-xs font-mono font-extrabold px-3 py-1 rounded-full border ${
+                      isActive 
+                        ? 'bg-brand-green text-white border-brand-green' 
+                        : 'bg-neutral-100 text-neutral-500 border-neutral-200'
+                    }`}>
+                      PHASE {stepItem.id}
+                    </span>
+                    
+                    <div className={`p-2.5 rounded-xl transition-colors ${
+                      isActive 
+                        ? 'bg-brand-green/10 text-brand-green' 
+                        : 'bg-neutral-100 text-neutral-500'
+                    }`}>
+                      <IconComp size={22} />
+                    </div>
+                  </div>
 
-            {/* Step 2 */}
-            <div className="flex flex-col items-center text-center p-6 space-y-4 relative group">
-              <div className="w-16 h-16 rounded-full bg-brand-green/10 border-2 border-brand-green/20 flex items-center justify-center text-brand-green font-extrabold text-xl shadow-lg">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900">Build</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
-                We design and develop with regular updates and your feedback built in.
-              </p>
-              {/* Connector arrow (desktop only) */}
-              <div className="hidden md:block absolute top-14 -right-4 translate-x-1/2 text-neutral-300">
-                <ChevronRight size={24} />
-              </div>
-            </div>
+                  {/* Title & Tagline */}
+                  <div className="space-y-1.5 mb-4">
+                    <h3 className="text-xl font-extrabold text-neutral-900">
+                      {stepItem.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-brand-green uppercase tracking-wider">
+                      {stepItem.tagline}
+                    </p>
+                  </div>
 
-            {/* Step 3 */}
-            <div className="flex flex-col items-center text-center p-6 space-y-4 relative group">
-              <div className="w-16 h-16 rounded-full bg-brand-green/10 border-2 border-brand-green/20 flex items-center justify-center text-brand-green font-extrabold text-xl shadow-lg">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900">Deliver</h3>
-              <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
-                A fully tested, production-ready product — with ongoing support.
-              </p>
-            </div>
+                  {/* Short Summary */}
+                  <p className="text-neutral-500 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-4">
+                    {stepItem.description}
+                  </p>
+
+                  {/* Active indicator bar */}
+                  <div className="flex items-center justify-between pt-2 border-t border-neutral-100 text-xs font-semibold">
+                    <span className={isActive ? 'text-brand-green' : 'text-neutral-400'}>
+                      {isActive ? '● Currently Active' : 'Click to inspect'}
+                    </span>
+                    <ChevronRight size={16} className={`transition-transform duration-200 ${isActive ? 'translate-x-1 text-brand-green' : 'text-neutral-300'}`} />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
+
+          {/* Interactive Expanded Detail Panel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="bg-neutral-900 text-white rounded-2xl p-6 sm:p-10 border border-neutral-800 shadow-2xl relative overflow-hidden"
+            >
+              {/* Background Glow */}
+              <div className="absolute top-0 right-0 w-72 h-72 bg-brand-green/10 rounded-full filter blur-3xl pointer-events-none" />
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+                
+                {/* Left Column — Phase Overview */}
+                <div className="lg:col-span-6 space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="text-2xl font-black text-brand-green font-mono">
+                      Phase {workSteps[activeStep].id}
+                    </span>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-xs font-mono font-medium border border-neutral-700">
+                      <Clock size={13} className="text-brand-green" />
+                      <span>Est. Duration: {workSteps[activeStep].duration}</span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                    {workSteps[activeStep].title}
+                  </h3>
+
+                  <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                    {workSteps[activeStep].description}
+                  </p>
+                </div>
+
+                {/* Right Column — Key Deliverables */}
+                <div className="lg:col-span-6 bg-neutral-950/80 p-5 sm:p-6 rounded-xl border border-neutral-800 space-y-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+                    🎯 Key Phase Deliverables
+                  </h4>
+
+                  <div className="space-y-3">
+                    {workSteps[activeStep].deliverables.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-neutral-900 border border-neutral-800/80 text-sm text-neutral-200">
+                        <div className="p-1 rounded bg-brand-green/20 text-brand-green flex-shrink-0 mt-0.5">
+                          <Check size={14} />
+                        </div>
+                        <span className="font-medium leading-snug">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Bottom Navigation Buttons */}
+              <div className="mt-8 pt-6 border-t border-neutral-800/80 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-xs text-neutral-400 font-mono">
+                  <span>Step {activeStep + 1} of {workSteps.length}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveStep((prev) => (prev > 0 ? prev - 1 : workSteps.length - 1))}
+                    type="button"
+                    suppressHydrationWarning
+                    className="px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <ChevronLeft size={14} /> Previous Phase
+                  </button>
+
+                  <button
+                    onClick={() => setActiveStep((prev) => (prev < workSteps.length - 1 ? prev + 1 : 0))}
+                    type="button"
+                    suppressHydrationWarning
+                    className="px-4 py-2 rounded-lg bg-brand-green hover:bg-brand-green-hover text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-md shadow-brand-green/20 cursor-pointer"
+                  >
+                    Next Phase <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
+
         </div>
       </section>
 
