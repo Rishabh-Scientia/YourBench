@@ -28,6 +28,7 @@ import {
   Clock
 } from 'lucide-react';
 import SmartImage from '@/components/SmartImage';
+import ContactForm from '@/components/ContactForm';
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -907,125 +908,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column Form */}
-            <div className="lg:col-span-7 bg-white rounded-2xl border border-neutral-200/80 shadow-lg p-6 sm:p-8 relative">
-              
-              <AnimatePresence>
-                {formSubmitted && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute inset-0 bg-white rounded-2xl flex flex-col items-center justify-center p-6 text-center z-10"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 animate-bounce">
-                      <Sparkles size={32} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-neutral-900">Message Received!</h3>
-                    <p className="text-neutral-500 text-sm max-w-sm mt-2">
-                      Thanks for reaching out to YourBench. Rishabh or our team will get back to you soon.
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="name" className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Your Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      suppressHydrationWarning
-                      value={formState.name}
-                      onChange={handleFormChange}
-                      placeholder="Enter your name"
-                      className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm transition-all"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="email" className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Email Address</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      suppressHydrationWarning
-                      value={formState.email}
-                      onChange={handleFormChange}
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Phone (Optional) */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="phone" className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Phone Number (Optional)</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      suppressHydrationWarning
-                      value={formState.phone}
-                      onChange={handleFormChange}
-                      placeholder="e.g. +91 99999 99999"
-                      className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm transition-all"
-                    />
-                  </div>
-
-                  {/* Interest dropdown */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="interest" className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">I&apos;m interested in</label>
-                    <select
-                      id="interest"
-                      name="interest"
-                      suppressHydrationWarning
-                      value={formState.interest}
-                      onChange={handleFormChange}
-                      className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm bg-white transition-all"
-                    >
-                      <option value="FeeMaster">FeeMaster (School Fees Software)</option>
-                      <option value="Prepo.ai">Prepo.ai (AI Assessment Platform)</option>
-                      <option value="Custom Software">Custom Software Solutions</option>
-                      <option value="Partnership">Partnership</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div className="space-y-1.5">
-                  <label htmlFor="message" className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Your Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    suppressHydrationWarning
-                    rows={4}
-                    value={formState.message}
-                    onChange={handleFormChange}
-                    placeholder="Describe your school's requirements or custom project..."
-                    className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green text-sm transition-all resize-y"
-                  />
-                </div>
-
-                <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    suppressHydrationWarning
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-brand-green hover:bg-brand-green-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-brand-green/20 text-sm cursor-pointer"
-                  >
-                    Send Message <ArrowRight size={16} />
-                  </button>
-                </div>
-              </form>
+            {/* Right Column Form (Supabase Connected) */}
+            <div className="lg:col-span-7">
+              <ContactForm />
             </div>
 
           </div>
