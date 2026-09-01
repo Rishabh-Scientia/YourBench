@@ -115,7 +115,7 @@ export default function Home() {
     "⚡ FeeMaster Cloud Node synced in 14ms",
     "📊 Compiled school collection payout: OK",
     "🟢 WhatsApp campaign server status: ONLINE",
-    "🧠 Prepo.ai adaptive quiz generated: Class 10 CBSE Science",
+    "🧠 Prepo.ai adaptive mock test generated: Class 10 CBSE Science",
     "📈 Growth indicator shifted: +49.1%",
     "🚀 Vercel Edge Server response: 200 OK"
   ];
@@ -515,14 +515,14 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <h4 className="text-sm sm:text-base font-semibold text-blue-600">AI-Powered Adaptive Quiz &amp; Assessment Platform</h4>
+                  <h4 className="text-sm sm:text-base font-semibold text-blue-600">AI Practice &amp; Mock Tests for Any Subject</h4>
                   <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
-                    Dynamically generates custom multiple-choice quizzes tailored to any academic level, subject, or chapter. Features instant scoring, detailed 4-part AI explanations, 1-click teacher shareable links, and live student response leaderboards.
+                    Dynamically generates custom AI practice tests and mock assessments tailored to any academic level, subject, or chapter. Features instant scoring, detailed 4-part AI explanations, 1-click teacher shareable links, and live student response leaderboards.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['Custom AI Quizzes', 'Instant Scoring', '4-Part AI Explanations', '1-Click Teacher Share', 'Live Leaderboards', 'Attempt History'].map((tag) => (
+                  {['AI Practice Tests', 'Mock Assessments', 'Instant Scoring', '4-Part AI Explanations', '1-Click Teacher Share', 'Live Leaderboards'].map((tag) => (
                     <span key={tag} className="text-[10px] sm:text-xs bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-md font-medium border border-neutral-200/50">
                       {tag}
                     </span>

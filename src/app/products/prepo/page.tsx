@@ -2,49 +2,41 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
   ExternalLink, 
   Sparkles, 
-  Check, 
   Brain, 
   BookOpen, 
-  Users, 
   Trophy, 
   Share2, 
   History, 
   Zap, 
   ShieldCheck, 
-  Layers,
-  HelpCircle,
-  Clock,
-  CheckCircle2,
   FileText
 } from 'lucide-react';
 import SmartImage from '@/components/SmartImage';
 
 export default function PrepoPage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'generator' | 'history' | 'teacher'>('overview');
-
   const screenshots = [
     {
       id: 'generator',
-      title: '1. AI Quiz Configuration Generator',
-      subtitle: 'Select Class Level, Subject, Chapter/Topic, Question Count, Language, and Difficulty Level.',
+      title: '1. AI Practice & Mock Test Generator',
+      subtitle: 'Select Class Level, Subject, Chapter/Topic, or Upload Study Notes (PDF/Doc) with custom Difficulty & Language.',
       src: '/prepo-quiz-generator.png',
-      alt: 'Prepo.ai Quiz Generator Form'
+      alt: 'Prepo.ai Practice Test Generator Form'
     },
     {
       id: 'history',
       title: '2. User Attempt History & Score Badges',
-      subtitle: 'Personal dashboard displaying quizzes attempted, score percentages, and 1-click response review.',
+      subtitle: 'Personal dashboard displaying mock tests attempted, score percentages, and 1-click response review.',
       src: '/prepo-quiz-history.png',
       alt: 'Prepo.ai Attempt History Dashboard'
     },
     {
       id: 'teacher',
-      title: '3. Teacher Shared Quizzes & Student Submissions',
+      title: '3. Teacher Shared Tests & Student Submissions',
       subtitle: 'Track student responses, copy 1-click test links, and view live student submissions.',
       src: '/prepo-teacher-dashboard.png',
       alt: 'Prepo.ai Teacher Dashboard'
@@ -105,10 +97,10 @@ export default function PrepoPage() {
 
               <div className="space-y-3">
                 <h2 className="text-xl sm:text-2xl font-bold text-blue-600">
-                  AI-Powered Adaptive Quiz &amp; Assessment Platform
+                  AI Practice &amp; Mock Tests for Any Subject
                 </h2>
                 <p className="text-neutral-600 text-base sm:text-lg leading-relaxed">
-                  Prepo.ai dynamically generates custom multiple-choice quizzes tailored to any academic level, subject, or chapter. It delivers instant 0ms scoring, 4-part AI explanations, and enables teachers to share quizzes via unique links with live response leaderboards.
+                  Prepo.ai dynamically generates custom AI practice tests and mock assessments tailored to any academic level, subject, or chapter. Upload notes or choose topics for instant 0ms scoring, 4-part AI explanations, and teacher shareable test links with live response leaderboards.
                 </p>
               </div>
 
@@ -137,12 +129,12 @@ export default function PrepoPage() {
               {/* Quick Feature Chips */}
               <div className="flex flex-wrap gap-2 pt-4 border-t border-neutral-100">
                 {[
-                  'Custom AI Quizzes',
+                  'AI Practice & Mock Tests',
                   'Instant Scoring',
                   '4-Part AI Explanations',
                   '1-Click Teacher Links',
                   'Live Leaderboards',
-                  '3 Free Credits'
+                  '3 Free Test Credits'
                 ].map((chip) => (
                   <span key={chip} className="text-xs bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-lg font-medium border border-neutral-200/60">
                     ✓ {chip}
@@ -189,7 +181,7 @@ export default function PrepoPage() {
           </div>
           <h2 className="text-3xl font-extrabold text-neutral-900">Experience Prepo.ai in Action</h2>
           <p className="text-neutral-600 max-w-xl mx-auto text-sm sm:text-base">
-            Designed for students preparing for exams and teachers managing assessments.
+            AI-generated practice tests and mock assessments for students preparing for exams and teachers managing tests.
           </p>
         </div>
 
@@ -223,7 +215,7 @@ export default function PrepoPage() {
         <div className="text-center space-y-3 mb-12">
           <h2 className="text-3xl font-extrabold text-neutral-900">Key Features</h2>
           <p className="text-neutral-600 max-w-xl mx-auto text-sm sm:text-base">
-            Everything you need for smart AI test generation and instant grading.
+            Everything you need for smart AI mock test generation and instant grading.
           </p>
         </div>
 
@@ -234,9 +226,9 @@ export default function PrepoPage() {
             <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center">
               <Brain size={24} />
             </div>
-            <h3 className="text-xl font-bold text-neutral-900">🎯 Custom AI Quiz Generation</h3>
+            <h3 className="text-xl font-bold text-neutral-900">🎯 Custom AI Mock &amp; Practice Tests</h3>
             <p className="text-neutral-600 text-sm leading-relaxed">
-              Select Grade/Class (Class 10, NEET, B.Tech ECE, etc.), Subject (Physics, Chemistry, DBMS, Math), Chapter/Topic, Question Count (5-20), Difficulty (Easy/Medium/Hard/Mixed), and Language (English, Hindi, Hinglish).
+              Create tests by topic or upload study notes (PDF/Doc). Select Grade/Class (Class 1–12, NEET, JEE, B.Tech ECE, etc.), Subject (Physics, Chemistry, DBMS, Math), Chapter/Topic, Question Count (5-20), Difficulty (Easy/Medium/Hard/Mixed), and Language (English, Hindi, Hinglish).
             </p>
           </div>
 
@@ -252,24 +244,24 @@ export default function PrepoPage() {
           </div>
 
           {/* Feature 3 */}
-          <div className="bg-white p-8 rounded-2xl border border-neutral-200/80 shadow-md space-y-4">
+          <div className="bg-white p-8 rounded-2xl border border-indigo-100/80 shadow-md space-y-4">
             <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-600 flex items-center justify-center">
               <History size={24} />
             </div>
             <h3 className="text-xl font-bold text-neutral-900">📊 Attempt History &amp; Score Badges</h3>
             <p className="text-neutral-600 text-sm leading-relaxed">
-              Personal dashboard tracking quizzes attempted with color-coded score badges (Green 100%, Blue 80%, Yellow 40%, Red 0%) and 1-click full response review for past attempts.
+              Personal dashboard tracking mock tests attempted with color-coded score badges (Green 100%, Blue 80%, Yellow 40%, Red 0%) and 1-click full response review for past attempts.
             </p>
           </div>
 
           {/* Feature 4 */}
-          <div className="bg-white p-8 rounded-2xl border border-neutral-200/80 shadow-md space-y-4">
+          <div className="bg-white p-8 rounded-2xl border border-purple-100/80 shadow-md space-y-4">
             <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center">
               <Share2 size={24} />
             </div>
             <h3 className="text-xl font-bold text-neutral-900">🔗 Teacher Share &amp; Student Mode</h3>
             <p className="text-neutral-600 text-sm leading-relaxed">
-              Teachers can share any quiz via a 1-click link (<code className="bg-neutral-100 px-1 py-0.5 rounded text-xs font-mono">?quiz_id=UUID</code>). Pre-stored explanations allow 50+ students to submit concurrently with instant 0.1s grading and no signup needed for students.
+              Teachers can share any practice test via a 1-click link (<code className="bg-neutral-100 px-1 py-0.5 rounded text-xs font-mono">?quiz_id=UUID</code>). Pre-stored explanations allow 50+ students to submit concurrently with instant 0.1s grading and no signup needed for students.
             </p>
           </div>
 
@@ -291,7 +283,7 @@ export default function PrepoPage() {
             </div>
             <h3 className="text-xl font-bold text-neutral-900">🔑 Free Credits &amp; Secure Auth</h3>
             <p className="text-neutral-600 text-sm leading-relaxed">
-              Secure login with Google or Supabase Auth. Every user gets 3 free credits upon signup to generate custom AI quizzes immediately.
+              Secure login with Google or Supabase Auth. Every user gets 3 free credits upon signup to generate custom AI practice tests immediately.
             </p>
           </div>
 
@@ -309,7 +301,7 @@ export default function PrepoPage() {
             </div>
             <h2 className="text-3xl font-extrabold text-neutral-900">How to Use Prepo.ai</h2>
             <p className="text-neutral-600 text-sm sm:text-base">
-              Step-by-step guide to generating quizzes, taking tests, and reviewing student leaderboards.
+              Step-by-step guide to generating practice tests, taking mock assessments, and reviewing student leaderboards.
             </p>
           </div>
 
@@ -323,7 +315,7 @@ export default function PrepoPage() {
               <div className="space-y-1.5 pt-1">
                 <h3 className="text-lg font-bold text-neutral-900">Visit Platform &amp; Sign In</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">
-                  Go to <a href="https://www.prepo.co.in/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-semibold">https://www.prepo.co.in/</a> (or search <em>"AI Quiz by Prepo"</em>). Sign in using Google or email with Supabase Auth to claim your <strong>3 Free Quiz Generation Credits</strong>.
+                  Go to <a href="https://www.prepo.co.in/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-semibold">https://www.prepo.co.in/</a> (or search <em>"AI Practice Tests by Prepo"</em>). Sign in using Google or email with Supabase Auth to claim your <strong>3 Free Test Generation Credits</strong>.
                 </p>
               </div>
             </div>
@@ -334,14 +326,14 @@ export default function PrepoPage() {
                 2
               </div>
               <div className="space-y-1.5 pt-1">
-                <h3 className="text-lg font-bold text-neutral-900">Configure &amp; Generate Your Quiz</h3>
+                <h3 className="text-lg font-bold text-neutral-900">Configure &amp; Generate Your Practice Test</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">
-                  Click <strong>"Generate Quiz"</strong> and fill in your parameters:
+                  Click <strong>"Start Practice Test"</strong> and choose your topic or upload study notes (PDF/Doc):
                 </p>
                 <ul className="text-xs sm:text-sm text-neutral-600 space-y-1 list-disc pl-5 pt-1">
-                  <li><strong>Class / Grade Level:</strong> e.g., Class 10 CBSE, Class 11, B.Tech 3rd Sem ECE, NEET Dropper.</li>
+                  <li><strong>Class / Grade Level:</strong> e.g., Class 10 CBSE, Class 12, B.Tech 3rd Sem ECE, JEE / NEET Dropper.</li>
                   <li><strong>Subject:</strong> Physics, Chemistry, Math, Biology, Computer Science, DBMS, etc.</li>
-                  <li><strong>Chapter / Topic:</strong> e.g., <em>Normalization in DBMS</em> or <em>Optical Fiber Attenuation</em>.</li>
+                  <li><strong>Chapter / Topic or Notes:</strong> e.g., <em>Normalization in DBMS</em>, <em>Optical Fiber Attenuation</em>, or upload your lecture notes.</li>
                   <li><strong>Options:</strong> Select question count (5–20), difficulty (Easy/Medium/Hard/Mixed), and language (English, Hindi, Hinglish).</li>
                 </ul>
               </div>
@@ -353,7 +345,7 @@ export default function PrepoPage() {
                 3
               </div>
               <div className="space-y-1.5 pt-1">
-                <h3 className="text-lg font-bold text-neutral-900">Attempt Quiz &amp; Get Instant AI Explanations</h3>
+                <h3 className="text-lg font-bold text-neutral-900">Attempt Test &amp; Get Instant AI Explanations</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">
                   Submit your answers to receive instant 0ms grading. Review comprehensive 4-part AI explanations (Verdict, Core Concept, Step-by-Step Reasoning, and Misconception Analysis) for every single question.
                 </p>
@@ -368,7 +360,7 @@ export default function PrepoPage() {
               <div className="space-y-1.5 pt-1">
                 <h3 className="text-lg font-bold text-neutral-900">Track History &amp; Share With Students (Teacher Mode)</h3>
                 <p className="text-neutral-600 text-sm leading-relaxed">
-                  Access <strong>"My Quiz History"</strong> anytime to review past performance badges. Teachers can switch to <strong>"Shared Quizzes (Teacher)"</strong>, click <strong>"Copy Link"</strong> to distribute to students without requiring student signups, and open the <strong>Live Leaderboard</strong> to view student submissions in real time.
+                  Access <strong>"My Test History"</strong> anytime to review past performance badges. Teachers can switch to <strong>"Shared Tests (Teacher)"</strong>, click <strong>"Copy Link"</strong> to distribute to students without requiring student signups, and open the <strong>Live Leaderboard</strong> to view student submissions in real time.
                 </p>
               </div>
             </div>
@@ -386,7 +378,7 @@ export default function PrepoPage() {
               Ready to Experience Prepo.ai?
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-              Start generating custom AI quizzes in seconds with 3 free credits. No installation required.
+              Start generating custom AI practice tests &amp; mock assessments in seconds with 3 free credits. No installation required.
             </p>
           </div>
 
