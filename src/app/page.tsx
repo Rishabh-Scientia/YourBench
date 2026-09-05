@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Lock, 
   Sparkles, 
   ArrowRight, 
   ExternalLink,
@@ -15,7 +14,6 @@ import {
   Globe, 
   Cpu,
   Brain,
-  MessageSquare,
   ArrowRightLeft,
   ChevronRight,
   ChevronLeft,
@@ -114,7 +112,7 @@ export default function Home() {
     "💾 Local DB loaded: %LOCALAPPDATA%/feemaster.db",
     "⚡ FeeMaster Cloud Node synced in 14ms",
     "📊 Compiled school collection payout: OK",
-    "🟢 WhatsApp campaign server status: ONLINE",
+    "🟢 Cloud API webhook cluster: ONLINE",
     "🧠 Prepo.ai adaptive mock test generated: Class 10 CBSE Science",
     "📈 Growth indicator shifted: +49.1%",
     "🚀 Vercel Edge Server response: 200 OK"
@@ -233,7 +231,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 className="text-lg text-neutral-600 max-w-xl leading-relaxed"
               >
-                YourBench is an Indian software company crafting powerful desktop tools, AI-powered automation, and custom digital solutions — built specifically for the needs of Indian schools, educators, and growing businesses.
+                YourBench is an Indian software company crafting powerful web apps, desktop tools, and custom AI solutions — built specifically for the needs of Indian MSMEs, startups, educational institutes, and growing businesses.
               </motion.p>
 
               <motion.div
@@ -414,14 +412,14 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Products Showcase */}
+          <div className="space-y-8">
             
-            {/* Card 1 — FeeMaster (Featured, Full Width or Large Position) */}
+            {/* Card 1 — FeeMaster */}
             <motion.div
               whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="lg:col-span-2 bg-white rounded-2xl border-l-4 border-brand-green border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden"
+              className="bg-white rounded-2xl border-l-4 border-brand-green border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden"
             >
               {/* Product Info left */}
               <div className="flex-1 space-y-5">
@@ -444,9 +442,9 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-lg font-semibold text-brand-green">Simplify Fees. Empower Schools.</h4>
+                  <h4 className="text-lg font-semibold text-brand-green">Simplify Fees. Empower Schools &amp; Institutes.</h4>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                    A complete desktop fee management system for Indian schools — handles fee collection, student records, staff payroll, attendance, and multi-role access. Built for Windows, works fully offline.
+                    A complete desktop fee management system for Indian schools and institutes — handles fee collection, student records, staff payroll, attendance, and multi-role access. Built for Windows, works fully offline.
                   </p>
                 </div>
 
@@ -471,7 +469,7 @@ export default function Home() {
               </div>
               
               {/* Product Mockup right */}
-              <div className="w-full md:w-80 lg:w-96 aspect-[4/3] bg-neutral-50 border border-neutral-200/70 rounded-xl shadow-inner flex items-center justify-center p-2 relative overflow-hidden">
+              <div className="w-full md:w-80 lg:w-96 aspect-[4/3] bg-neutral-50 border border-neutral-200/70 rounded-xl shadow-inner flex items-center justify-center p-2 relative overflow-hidden flex-shrink-0">
                 <SmartImage
                   src="/fee-master-dashboard.webp"
                   fallbackSrc="/logo-feemaster.svg"
@@ -481,20 +479,15 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Card 2 — Prepo.ai (Live Platform) */}
+            {/* Card 2 — Prepo.ai */}
             <motion.div
               whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-white rounded-2xl border-l-4 border-blue-600 border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
+              className="bg-white rounded-2xl border-l-4 border-blue-600 border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden group"
             >
-              {/* Live Badge Top Right */}
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold border border-emerald-200 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Live Platform</span>
-              </div>
-
-              <div className="space-y-5">
-                <div className="flex items-center gap-3">
+              {/* Product Info left */}
+              <div className="flex-1 space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
                   <div className="w-12 h-12 relative rounded-xl bg-white p-1 flex items-center justify-center border border-neutral-200 shadow-sm overflow-hidden flex-shrink-0">
                     <SmartImage
                       src="/logo-prepo.jpg"
@@ -504,103 +497,62 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-200">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold border border-emerald-200">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Available Now
+                      Live Platform
                     </span>
-                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">
+                    <h3 className="text-2xl font-bold text-neutral-900 mt-0.5">
                       Prepo<span className="text-blue-600">.ai</span>
                     </h3>
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <h4 className="text-sm sm:text-base font-semibold text-blue-600">AI Practice &amp; Mock Tests for Any Subject</h4>
-                  <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
+                <div className="space-y-2">
+                  <h4 className="text-lg font-semibold text-blue-600">AI Practice &amp; Mock Tests for Any Subject</h4>
+                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
                     Dynamically generates custom AI practice tests and mock assessments tailored to any academic level, subject, or chapter. Features instant scoring, detailed 4-part AI explanations, 1-click teacher shareable links, and live student response leaderboards.
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                {/* Feature Pills */}
+                <div className="flex flex-wrap gap-2 pt-1">
                   {['AI Practice Tests', 'Mock Assessments', 'Instant Scoring', '4-Part AI Explanations', '1-Click Teacher Share', 'Live Leaderboards'].map((tag) => (
-                    <span key={tag} className="text-[10px] sm:text-xs bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-md font-medium border border-neutral-200/50">
+                    <span key={tag} className="text-xs bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-md font-medium border border-neutral-200/50">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              <div className="pt-6 flex flex-wrap sm:flex-nowrap items-center gap-3">
-                <Link
-                  href="/products/prepo"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
-                >
-                  <span>Learn More</span>
-                  <ArrowRight size={16} />
-                </Link>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <Link
+                    href="/products/prepo"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight size={16} />
+                  </Link>
 
-                <a
-                  href="https://www.prepo.co.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border-2 border-blue-600 hover:bg-blue-50 text-blue-600 font-bold transition-all duration-200 text-sm cursor-pointer"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Live</span>
-                  <ExternalLink size={15} />
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Card 3 — WhatsApp Automation Engine (Coming Soon) */}
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl border border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
-            >
-              {/* Lock Badge Top Right */}
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-500 text-[10px] font-bold border border-neutral-200">
-                <Lock size={10} />
-                <span>In Development</span>
-              </div>
-
-              <div className="space-y-5">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-lg bg-green-50 border border-green-100 text-green-600">
-                    <MessageSquare size={24} />
-                  </div>
-                  <div>
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-800 text-[10px] font-bold">
-                      🔜 Coming Soon
-                    </span>
-                    <h3 className="text-xl font-bold text-neutral-900 mt-0.5">WhatsApp Automation</h3>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <h4 className="text-md font-semibold text-neutral-800">Automate Your Business Communication</h4>
-                  <p className="text-neutral-500 text-sm leading-relaxed">
-                    WhatsApp automation for Indian businesses — bulk messaging, automated replies, campaign management, and customer flow automation.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {['Bulk Messaging', 'Auto-Reply', 'Campaign Manager', 'Business Workflows'].map((tag) => (
-                    <span key={tag} className="text-[10px] bg-neutral-100 text-neutral-600 px-2 py-1 rounded border border-neutral-200/50">
-                      {tag}
-                    </span>
-                  ))}
+                  <a
+                    href="https://www.prepo.co.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border-2 border-blue-600 hover:bg-blue-50 text-blue-600 font-bold transition-all duration-200 text-sm cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Live App</span>
+                    <ExternalLink size={15} />
+                  </a>
                 </div>
               </div>
 
-              <div className="pt-6">
-                <button
-                  type="button"
-                  disabled
-                  suppressHydrationWarning
-                  className="w-full text-center px-4 py-3 rounded-lg bg-neutral-100 text-neutral-400 font-semibold border border-neutral-200 pointer-events-none cursor-not-allowed text-sm"
-                >
-                  Coming Soon
-                </button>
+              {/* Product Mockup right */}
+              <div className="w-full md:w-80 lg:w-96 aspect-[4/3] bg-neutral-50 border border-neutral-200/70 rounded-xl shadow-inner flex items-center justify-center p-2 relative overflow-hidden flex-shrink-0">
+                <SmartImage
+                  src="/prepo-quiz-generator.png"
+                  fallbackSrc="/logo-prepo.jpg"
+                  alt="Prepo.ai Assessment Platform"
+                  className="w-full h-full object-cover rounded-lg shadow border border-neutral-100"
+                />
               </div>
             </motion.div>
 
@@ -619,7 +571,7 @@ export default function Home() {
                 Need Something Custom?
               </h2>
               <p className="text-neutral-600 leading-relaxed text-base sm:text-lg">
-                Don&apos;t see exactly what you need? We build custom software solutions for schools, businesses, and startups — from desktop tools to web applications. If you can describe it, we can build it.
+                Don&apos;t see exactly what you need? We build custom software solutions for MSMEs, businesses, educational institutes, and startups — from desktop tools to scalable web applications. If you can describe it, we can build it.
               </p>
               <div>
                 <button

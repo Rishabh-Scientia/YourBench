@@ -55,7 +55,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-neutral-400 text-sm max-w-sm">
-              Build Smarter. Grow Faster. Built specifically for the needs of Indian schools, educators, and growing businesses.
+              Build Smarter. Grow Faster. Built specifically for the needs of Indian MSMEs, educational institutes, startups, and growing businesses.
             </p>
           </div>
 

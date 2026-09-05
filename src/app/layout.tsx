@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "YourBench — Build Smarter. Grow Faster.",
-  description: "YourBench builds desktop tools, AI automation, and custom software for Indian schools and businesses. Products include FeeMaster, Prepo.ai, and WhatsApp Automation Engine.",
+  description: "YourBench builds web apps, desktop tools, AI automation, and custom software for Indian MSMEs, startups, educational institutes, and growing businesses.",
   icons: {
     icon: [
       { url: "/logo-yourbench.png", type: "image/png" },
