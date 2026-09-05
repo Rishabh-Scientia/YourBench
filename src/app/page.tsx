@@ -334,19 +334,20 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                 className="flex flex-col sm:flex-row gap-4 pt-2"
               >
-                <Link
-                  href="/products"
-                  className="px-8 py-4 bg-brand-green hover:bg-brand-green-hover text-white font-bold rounded-lg transition-all duration-200 shadow-xl shadow-brand-green/20 text-center cursor-pointer inline-flex items-center justify-center gap-2"
-                >
-                  <span>See Our Products</span>
-                  <ArrowRight size={18} />
-                </Link>
                 <button
                   onClick={() => handleScrollTo('solutions')}
                   suppressHydrationWarning
+                  className="px-8 py-4 bg-brand-green hover:bg-brand-green-hover text-white font-bold rounded-lg transition-all duration-200 shadow-xl shadow-brand-green/20 text-center cursor-pointer inline-flex items-center justify-center gap-2"
+                >
+                  <span>Tailored Solutions</span>
+                  <ArrowRight size={18} />
+                </button>
+                <button
+                  onClick={() => handleScrollTo('contact')}
+                  suppressHydrationWarning
                   className="px-8 py-4 border-2 border-brand-black hover:bg-brand-black/5 text-brand-black font-bold rounded-lg transition-all duration-200 text-center cursor-pointer"
                 >
-                  Custom Solutions
+                  Contact Us
                 </button>
               </motion.div>
             </div>
