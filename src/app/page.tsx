@@ -254,7 +254,7 @@ export default function Home() {
                   suppressHydrationWarning
                   className="px-8 py-4 border-2 border-brand-black hover:bg-brand-black/5 text-brand-black font-bold rounded-lg transition-all duration-200 text-center cursor-pointer"
                 >
-                  Hire Us for Custom Software
+                  Custom Solutions
                 </button>
               </motion.div>
             </div>
