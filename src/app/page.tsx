@@ -383,8 +383,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center lg:text-left divide-y lg:divide-y-0 lg:divide-x divide-neutral-800">
             <div className="flex items-center justify-center lg:justify-start gap-3 p-2 lg:pl-6">
-              <span className="text-2xl">🏫</span>
-              <span className="text-sm font-semibold tracking-wide">Built for Indian Schools</span>
+              <span className="text-2xl">🏢</span>
+              <span className="text-sm font-semibold tracking-wide">Built for Indian Businesses</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-3 p-2 pt-6 lg:pt-2 lg:pl-6">
               <span className="text-2xl">🧰</span>
