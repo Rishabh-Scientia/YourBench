@@ -150,7 +150,7 @@ export default function FeeMasterPage() {
     {
       step: '1',
       title: 'Contact Us',
-      desc: 'Email yoursbench@gmail.com or call +91 70782 68503'
+      desc: 'Email yoursbench@gmail.com or call +91-9389603320'
     },
     {
       step: '2',

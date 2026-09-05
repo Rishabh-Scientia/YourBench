@@ -185,6 +185,19 @@ export default function AdminPanelPage() {
     }
   };
 
+  // Delete Customer Inquiry
+  const handleDeleteInquiry = async (id, name) => {
+    if (!confirm(`Are you sure you want to delete inquiry from "${name || 'this customer'}"?`)) return;
+    try {
+      const { error } = await supabase.from('inquiries').delete().eq('id', id);
+      if (error) throw error;
+      showToast('Customer inquiry deleted successfully.');
+      fetchInquiries();
+    } catch (err) {
+      alert(err.message || 'Failed to delete inquiry.');
+    }
+  };
+
   // Delete Application Row
   const handleDeleteApplication = async (id) => {
     if (!confirm('Are you sure you want to delete this job application?')) return;
@@ -591,6 +604,7 @@ export default function AdminPanelPage() {
                         <th className="py-4 px-6">Interested In</th>
                         <th className="py-4 px-6">Message</th>
                         <th className="py-4 px-6">Date</th>
+                        <th className="py-4 px-6 text-right">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -622,6 +636,15 @@ export default function AdminPanelPage() {
                             </td>
                             <td className="py-4 px-6 text-xs text-gray-500 font-mono whitespace-nowrap">
                               {formatDate(row.created_at)}
+                            </td>
+                            <td className="py-4 px-6 text-right whitespace-nowrap">
+                              <button
+                                onClick={() => handleDeleteInquiry(row.id, row.name)}
+                                className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer inline-flex items-center justify-center"
+                                title="Delete Inquiry"
+                              >
+                                <Trash2 size={15} />
+                              </button>
                             </td>
                           </tr>
                         );

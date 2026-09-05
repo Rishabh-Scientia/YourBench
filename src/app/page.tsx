@@ -874,13 +874,13 @@ export default function Home() {
                   </a>
 
                   {/* Phone */}
-                  <a href="tel:+917078268503" className="flex items-center gap-4 group p-1 hover:bg-neutral-100 rounded-lg transition-colors">
+                  <a href="tel:+919389603320" className="flex items-center gap-4 group p-1 hover:bg-neutral-100 rounded-lg transition-colors">
                     <div className="w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Phone size={18} />
                     </div>
                     <div>
                       <div className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">Call Us</div>
-                      <div className="text-sm sm:text-base font-bold text-neutral-900 group-hover:text-brand-green transition-colors">+91 70782 68503</div>
+                      <div className="text-sm sm:text-base font-bold text-neutral-900 group-hover:text-brand-green transition-colors">+91-9389603320</div>
                     </div>
                   </a>
 
