@@ -1,21 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
-export default function ContactForm() {
+export default function ContactForm({ selectedInterest = 'Business Website' }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    interest: 'FeeMaster (School Fees Software)',
+    interest: selectedInterest || 'Business Website',
     message: ''
   });
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (selectedInterest) {
+      setFormData(prev => ({ ...prev, interest: selectedInterest }));
+    }
+  }, [selectedInterest]);
 
   const handleChange = (e) => {
     setFormData({
@@ -59,7 +65,7 @@ export default function ContactForm() {
         name: '',
         email: '',
         phone: '',
-        interest: 'FeeMaster (School Fees Software)',
+        interest: selectedInterest || 'Business Website',
         message: ''
       });
     } catch (err) {
@@ -151,12 +157,15 @@ export default function ContactForm() {
               name="interest"
               value={formData.interest}
               onChange={handleChange}
-              className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm text-gray-900 bg-white transition-all"
+              className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm text-gray-900 bg-white transition-all font-medium"
             >
-              <option value="FeeMaster (School Fees Software)">FeeMaster (School Fees Software)</option>
-              <option value="Prepo.ai">Prepo.ai</option>
-              <option value="Custom Project">Custom Project</option>
-              <option value="Other">Other</option>
+              <option value="Business Website">Business Website</option>
+              <option value="E-Commerce Store">E-Commerce Store</option>
+              <option value="Inventory & Order Management">Inventory & Order Management</option>
+              <option value="School / Institute Fee Management">School / Institute Fee Management</option>
+              <option value="Custom AI & Automation">Custom AI & Automation</option>
+              <option value="Custom SaaS / Web Portal">Custom SaaS / Web Portal</option>
+              <option value="Other">Other Custom Requirement</option>
             </select>
           </div>
         </div>
@@ -173,7 +182,7 @@ export default function ContactForm() {
             rows={4}
             value={formData.message}
             onChange={handleChange}
-            placeholder="Describe your school's requirements or custom project..."
+            placeholder="Tell us about your business requirements or project..."
             className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-400 text-sm text-gray-900 transition-all resize-y"
           />
         </div>

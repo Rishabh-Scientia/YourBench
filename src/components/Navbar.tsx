@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: 'Home', href: '/', external: false },
-    { name: 'Products', href: isHome ? '#products' : '/#products', external: false },
+    { name: 'Products', href: '/products', external: false },
     { name: 'Custom Solutions', href: isHome ? '#solutions' : '/#solutions', external: false },
     { name: 'Team', href: '/team', external: true },
     { name: 'Careers', href: '/careers', external: true },
@@ -77,6 +77,14 @@ export default function Navbar() {
                 >
                   {item.name}
                 </Link>
+              ) : item.href.startsWith('/') && !item.href.includes('#') && item.href !== '/' ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm font-medium text-neutral-300 hover:text-white transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
               ) : (
                 <a
                   key={item.name}
@@ -133,6 +141,15 @@ export default function Navbar() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-3 py-3 rounded-md text-base font-medium text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ) : item.href.startsWith('/') && !item.href.includes('#') && item.href !== '/' ? (
+                  <Link
+                    key={item.name}
+                    href={item.href}
                     onClick={() => setIsOpen(false)}
                     className="block px-3 py-3 rounded-md text-base font-medium text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors"
                   >

@@ -23,7 +23,10 @@ import {
   Code2,
   Rocket,
   Check,
-  Clock
+  Clock,
+  ShoppingBag,
+  Package,
+  Layers
 } from 'lucide-react';
 import SmartImage from '@/components/SmartImage';
 import ContactForm from '@/components/ContactForm';
@@ -51,6 +54,97 @@ const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState(0);
+  const [selectedInterest, setSelectedInterest] = useState('Business Website');
+
+  const handleSelectSolution = (solutionName: string) => {
+    setSelectedInterest(solutionName);
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const businessSolutions = [
+    {
+      id: 'website',
+      title: 'Modern Business Website',
+      badge: 'High Performance',
+      badgeColor: 'bg-emerald-100 text-emerald-800',
+      icon: Globe,
+      iconBg: 'bg-emerald-50 border border-emerald-200/60',
+      iconColor: 'text-emerald-600',
+      tagline: 'Custom corporate, brand, and portfolio websites designed to convert visitors into paying clients.',
+      features: ['Lightning-Fast Next.js & React', 'Mobile-First Responsive UI', 'SEO & Lead Capture Integration', 'Speed & Performance Optimized'],
+      selectorValue: 'Business Website',
+      ctaText: 'Get a Website Quote'
+    },
+    {
+      id: 'ecommerce',
+      title: 'E-Commerce Online Store',
+      badge: 'Scalable Sales',
+      badgeColor: 'bg-blue-100 text-blue-800',
+      icon: ShoppingBag,
+      iconBg: 'bg-blue-50 border border-blue-200/60',
+      iconColor: 'text-blue-600',
+      tagline: 'Full-featured online stores with smooth checkout, product catalogs, and automated order flows.',
+      features: ['Modern Product Catalog', 'Razorpay & UPI Payments Integration', 'Order Management Flow', 'Customer Accounts & History'],
+      selectorValue: 'E-Commerce Store',
+      ctaText: 'Build Your Store'
+    },
+    {
+      id: 'inventory',
+      title: 'Inventory & Order Management',
+      badge: 'Stock & Tracking',
+      badgeColor: 'bg-amber-100 text-amber-800',
+      icon: Package,
+      iconBg: 'bg-amber-50 border border-amber-200/60',
+      iconColor: 'text-amber-600',
+      tagline: 'Centralized stock control and sales management software to eliminate stock-outs and track orders.',
+      features: ['Real-Time Stock & Warehouse Tracking', 'Purchase & Supplier Records', 'Order Dispatch & Fulfillment Flow', 'Sales Reports & Analytics'],
+      selectorValue: 'Inventory & Order Management',
+      ctaText: 'Streamline Inventory'
+    },
+    {
+      id: 'feemanagement',
+      title: 'School Fee Management System',
+      badge: 'Offline Desktop',
+      badgeColor: 'bg-brand-green/20 text-brand-green',
+      icon: GraduationCap,
+      iconBg: 'bg-green-50 border border-green-200/60',
+      iconColor: 'text-brand-green',
+      tagline: 'Complete desktop fee management system with receipt printing, student records, and staff payroll.',
+      features: ['Instant Receipt Generation & Printing', '100% Offline Desktop Operation', 'Staff Payroll & Attendance Tracking', 'Student Dues & Ledgers Management'],
+      selectorValue: 'School / Institute Fee Management',
+      ctaText: 'Inquire for Fee System'
+    },
+    {
+      id: 'ai-automation',
+      title: 'Custom AI & Workflow Automation',
+      badge: 'Intelligent Systems',
+      badgeColor: 'bg-purple-100 text-purple-800',
+      icon: Brain,
+      iconBg: 'bg-purple-50 border border-purple-200/60',
+      iconColor: 'text-purple-600',
+      tagline: 'Smart AI assistants, document processors, and automated pipelines that save hundreds of staff hours.',
+      features: ['Intelligent AI Assistants & Chatbots', 'Automated Data Extraction', 'CRM & Webhook Pipelines', 'Custom LLM & Agent Workflows'],
+      selectorValue: 'Custom AI & Automation',
+      ctaText: 'Automate with AI'
+    },
+    {
+      id: 'custom-saas',
+      title: 'Custom Web Apps & Portals',
+      badge: 'Enterprise SaaS',
+      badgeColor: 'bg-indigo-100 text-indigo-800',
+      icon: Layers,
+      iconBg: 'bg-indigo-50 border border-indigo-200/60',
+      iconColor: 'text-indigo-600',
+      tagline: 'Bespoke web applications, secure client dashboards, internal employee portals, and cloud backends.',
+      features: ['Role-Based Authentication & Security', 'Interactive Admin Dashboards', 'Scalable Cloud Database Architecture', 'Tailored Business Logic'],
+      selectorValue: 'Custom SaaS / Web Portal',
+      ctaText: 'Build Custom Portal'
+    }
+  ];
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
@@ -240,15 +334,15 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                 className="flex flex-col sm:flex-row gap-4 pt-2"
               >
-                <button
-                  onClick={() => handleScrollTo('products')}
-                  suppressHydrationWarning
-                  className="px-8 py-4 bg-brand-green hover:bg-brand-green-hover text-white font-bold rounded-lg transition-all duration-200 shadow-xl shadow-brand-green/20 text-center cursor-pointer"
+                <Link
+                  href="/products"
+                  className="px-8 py-4 bg-brand-green hover:bg-brand-green-hover text-white font-bold rounded-lg transition-all duration-200 shadow-xl shadow-brand-green/20 text-center cursor-pointer inline-flex items-center justify-center gap-2"
                 >
-                  See Our Products
-                </button>
+                  <span>See Our Products</span>
+                  <ArrowRight size={18} />
+                </Link>
                 <button
-                  onClick={() => handleScrollTo('contact')}
+                  onClick={() => handleScrollTo('solutions')}
                   suppressHydrationWarning
                   className="px-8 py-4 border-2 border-brand-black hover:bg-brand-black/5 text-brand-black font-bold rounded-lg transition-all duration-200 text-center cursor-pointer"
                 >
@@ -402,161 +496,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4 — PRODUCTS (Bento Grid) */}
-      <section id="products" className="py-20 md:py-28 bg-[#F8F9FA]">
+      {/* SECTION 4 — BUSINESS SOFTWARE & DIGITAL SOLUTIONS */}
+      <section id="solutions" className="py-20 md:py-28 bg-[#F8F9FA] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900">Our Products</h2>
-            <p className="text-neutral-600 max-w-lg mx-auto">
-              Tools we&apos;ve built. Each designed to solve a real problem.
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-green/10 text-brand-green text-xs font-semibold uppercase tracking-wider">
+              <Sparkles size={13} className="animate-pulse" />
+              <span>Tailored Solutions</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Software Built for Every Business Need
+            </h2>
+            <p className="text-neutral-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              Whether you need a high-converting website, an automated inventory workflow, or custom desktop tools — select your business need below for a rapid turnaround and transparent delivery.
             </p>
           </div>
 
-          {/* Products Showcase */}
-          <div className="space-y-8">
-            
-            {/* Card 1 — FeeMaster */}
-            <motion.div
-              whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-white rounded-2xl border-l-4 border-brand-green border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden"
-            >
-              {/* Product Info left */}
-              <div className="flex-1 space-y-5">
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="w-12 h-12 relative rounded bg-[#F8F9FA] p-1 flex items-center justify-center border border-neutral-200">
-                    <SmartImage
-                      src="/logo-feemaster.png"
-                      fallbackSrc="/logo-feemaster.svg"
-                      alt="FeeMaster Logo"
-                      className="w-full h-full object-contain"
-                    />
+          {/* 6 High-Converting Solution Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {businessSolutions.map((solution) => {
+              const IconComp = solution.icon;
+              return (
+                <motion.div
+                  key={solution.id}
+                  whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="bg-white rounded-2xl border border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col justify-between relative group hover:border-brand-green/50 transition-colors"
+                >
+                  <div className="space-y-5">
+                    {/* Top Row: Icon + Badge */}
+                    <div className="flex items-center justify-between">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${solution.iconBg} ${solution.iconColor}`}>
+                        <IconComp size={24} />
+                      </div>
+                      <span className={`text-[11px] font-bold px-3 py-1 rounded-full ${solution.badgeColor}`}>
+                        {solution.badge}
+                      </span>
+                    </div>
+
+                    {/* Title & Tagline */}
+                    <div>
+                      <h3 className="text-xl font-bold text-neutral-900 group-hover:text-brand-green transition-colors">
+                        {solution.title}
+                      </h3>
+                      <p className="text-neutral-500 text-xs sm:text-sm mt-2 leading-relaxed">
+                        {solution.tagline}
+                      </p>
+                    </div>
+
+                    {/* Features List */}
+                    <div className="space-y-2 pt-2 border-t border-neutral-100">
+                      {solution.features.map((feat) => (
+                        <div key={feat} className="flex items-center gap-2 text-xs font-medium text-neutral-700">
+                          <Check size={14} className="text-brand-green flex-shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Available Now
-                    </span>
-                    <h3 className="text-2xl font-bold text-neutral-900 mt-0.5">FeeMaster</h3>
+
+                  {/* Card Action Button */}
+                  <div className="pt-6 mt-6 border-t border-neutral-100">
+                    <button
+                      type="button"
+                      onClick={() => handleSelectSolution(solution.selectorValue)}
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-neutral-900 hover:bg-brand-green text-white font-bold text-sm transition-all duration-200 cursor-pointer shadow-sm group-hover:shadow-md"
+                    >
+                      <span>{solution.ctaText}</span>
+                      <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="text-lg font-semibold text-brand-green">Simplify Fees. Empower Schools &amp; Institutes.</h4>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                    A complete desktop fee management system for Indian schools and institutes — handles fee collection, student records, staff payroll, attendance, and multi-role access. Built for Windows, works fully offline.
-                  </p>
-                </div>
-
-                {/* Feature Pills */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {['Fee Collection', 'Staff Payroll', 'Attendance', 'Reports & Receipts', 'Role-Based Access'].map((tag) => (
-                    <span key={tag} className="text-xs bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-md font-medium border border-neutral-200/50">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div>
-                  <Link 
-                    href="/products/feemaster" 
-                    target="_blank"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-brand-green hover:bg-brand-green-hover text-white font-bold transition-colors shadow-lg shadow-brand-green/20"
-                  >
-                    Learn More <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Product Mockup right */}
-              <div className="w-full md:w-80 lg:w-96 aspect-[4/3] bg-neutral-50 border border-neutral-200/70 rounded-xl shadow-inner flex items-center justify-center p-2 relative overflow-hidden flex-shrink-0">
-                <SmartImage
-                  src="/fee-master-dashboard.webp"
-                  fallbackSrc="/logo-feemaster.svg"
-                  alt="FeeMaster Desktop Dashboard"
-                  className="w-full h-full object-cover rounded-lg shadow border border-neutral-100"
-                />
-              </div>
-            </motion.div>
-
-            {/* Card 2 — Prepo.ai */}
-            <motion.div
-              whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)" }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-white rounded-2xl border-l-4 border-blue-600 border-y border-r border-neutral-200/80 shadow-md p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden group"
-            >
-              {/* Product Info left */}
-              <div className="flex-1 space-y-5">
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="w-12 h-12 relative rounded-xl bg-white p-1 flex items-center justify-center border border-neutral-200 shadow-sm overflow-hidden flex-shrink-0">
-                    <SmartImage
-                      src="/logo-prepo.jpg"
-                      fallbackSrc="/logo-prepo-text.jpg"
-                      alt="Prepo.ai Logo"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold border border-emerald-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Live Platform
-                    </span>
-                    <h3 className="text-2xl font-bold text-neutral-900 mt-0.5">
-                      Prepo<span className="text-blue-600">.ai</span>
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="text-lg font-semibold text-blue-600">AI Practice &amp; Mock Tests for Any Subject</h4>
-                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                    Dynamically generates custom AI practice tests and mock assessments tailored to any academic level, subject, or chapter. Features instant scoring, detailed 4-part AI explanations, 1-click teacher shareable links, and live student response leaderboards.
-                  </p>
-                </div>
-
-                {/* Feature Pills */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {['AI Practice Tests', 'Mock Assessments', 'Instant Scoring', '4-Part AI Explanations', '1-Click Teacher Share', 'Live Leaderboards'].map((tag) => (
-                    <span key={tag} className="text-xs bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-md font-medium border border-neutral-200/50">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <Link
-                    href="/products/prepo"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm cursor-pointer"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight size={16} />
-                  </Link>
-
-                  <a
-                    href="https://www.prepo.co.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border-2 border-blue-600 hover:bg-blue-50 text-blue-600 font-bold transition-all duration-200 text-sm cursor-pointer"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Live App</span>
-                    <ExternalLink size={15} />
-                  </a>
-                </div>
-              </div>
-
-              {/* Product Mockup right */}
-              <div className="w-full md:w-80 lg:w-96 aspect-[4/3] bg-neutral-50 border border-neutral-200/70 rounded-xl shadow-inner flex items-center justify-center p-2 relative overflow-hidden flex-shrink-0">
-                <SmartImage
-                  src="/prepo-quiz-generator.png"
-                  fallbackSrc="/logo-prepo.jpg"
-                  alt="Prepo.ai Assessment Platform"
-                  className="w-full h-full object-cover rounded-lg shadow border border-neutral-100"
-                />
-              </div>
-            </motion.div>
-
+                </motion.div>
+              );
+            })}
           </div>
+
+          {/* Banner: Explore Flagship Products */}
+          <div className="mt-16 bg-white rounded-2xl border border-neutral-200/90 shadow-sm p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green uppercase tracking-wider">
+                <span>Featured Software Products</span>
+              </div>
+              <h4 className="text-lg sm:text-xl font-bold text-neutral-900">
+                Looking for our ready-to-deploy software products?
+              </h4>
+              <p className="text-neutral-500 text-xs sm:text-sm">
+                Explore FeeMaster (Offline School Fee Suite) and Prepo.ai (AI Assessment Engine) on our dedicated products page.
+              </p>
+            </div>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-green hover:bg-brand-green-hover text-white font-bold text-sm transition-colors shadow-lg shadow-brand-green/20 whitespace-nowrap cursor-pointer flex-shrink-0"
+            >
+              <span>Explore Products</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+
         </div>
       </section>
 
@@ -862,7 +900,7 @@ export default function Home() {
 
             {/* Right Column Form (Supabase Connected) */}
             <div className="lg:col-span-7">
-              <ContactForm />
+              <ContactForm selectedInterest={selectedInterest} />
             </div>
 
           </div>
