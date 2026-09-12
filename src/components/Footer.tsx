@@ -61,11 +61,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/team" target="_blank" className="hover:text-white transition-colors">
-                  Team
-                </Link>
-              </li>
-              <li>
                 <Link href="/careers" target="_blank" className="hover:text-white transition-colors">
                   Careers
                 </Link>

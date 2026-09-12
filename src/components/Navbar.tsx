@@ -17,7 +17,6 @@ export default function Navbar() {
     { name: 'Home', href: '/', external: false },
     { name: 'Products', href: '/products', external: false },
     { name: 'Custom Solutions', href: isHome ? '#solutions' : '/#solutions', external: false },
-    { name: 'Team', href: '/team', external: true },
     { name: 'Careers', href: '/careers', external: true },
     { name: 'Contact', href: isHome ? '#contact' : '/#contact', external: false },
   ];
